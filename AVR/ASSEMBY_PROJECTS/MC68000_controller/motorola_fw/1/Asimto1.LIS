@@ -1,0 +1,11 @@
+00000000                                     1  	org $000
+00000000  00000000                           2  reset_ssp	dc.l	$000
+00000004                                     3  	org $004
+00000004  00000008                           4  init_pc	dc.l	$008
+00000008                                     5  
+00000008                                     6  	org $008
+00000008  60FE                               7  start	bra start
+0000000A                                     8  	end start
+
+No errors detected
+No warnings generated

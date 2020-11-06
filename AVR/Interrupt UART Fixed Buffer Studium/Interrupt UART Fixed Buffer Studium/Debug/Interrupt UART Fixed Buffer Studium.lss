@@ -1,0 +1,451 @@
+
+Interrupt UART Fixed Buffer Studium.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000042  00800100  000002c0  00000354  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000002c0  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          000001f9  00800142  00800142  00000396  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000396  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000003c8  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000038  00000000  00000000  00000408  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000008dd  00000000  00000000  00000440  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000075c  00000000  00000000  00000d1d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000003c8  00000000  00000000  00001479  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  0000008c  00000000  00000000  00001844  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000420  00000000  00000000  000018d0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000000ef  00000000  00000000  00001cf0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000028  00000000  00000000  00001ddf  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  48:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  50:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__vector_20>
+  54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	e0 ec       	ldi	r30, 0xC0	; 192
+  7c:	f2 e0       	ldi	r31, 0x02	; 2
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	a2 34       	cpi	r26, 0x42	; 66
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+
+0000008a <__do_clear_bss>:
+  8a:	23 e0       	ldi	r18, 0x03	; 3
+  8c:	a2 e4       	ldi	r26, 0x42	; 66
+  8e:	b1 e0       	ldi	r27, 0x01	; 1
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	ab 33       	cpi	r26, 0x3B	; 59
+  96:	b2 07       	cpc	r27, r18
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	0e 94 1e 01 	call	0x23c	; 0x23c <main>
+  9e:	0c 94 5e 01 	jmp	0x2bc	; 0x2bc <_exit>
+
+000000a2 <__bad_interrupt>:
+  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <__vector_20>:
+} outBuffer;
+
+outBuffer out = {{0}, 0, 0, false};
+
+ISR(USART_TX_vect)
+{
+  a6:	1f 92       	push	r1
+  a8:	0f 92       	push	r0
+  aa:	0f b6       	in	r0, 0x3f	; 63
+  ac:	0f 92       	push	r0
+  ae:	11 24       	eor	r1, r1
+  b0:	2f 93       	push	r18
+  b2:	8f 93       	push	r24
+  b4:	9f 93       	push	r25
+  b6:	ef 93       	push	r30
+  b8:	ff 93       	push	r31
+	if (out.Buffer[out.currentChar])
+  ba:	80 91 36 03 	lds	r24, 0x0336	; 0x800336 <__data_end+0x1f4>
+  be:	90 91 37 03 	lds	r25, 0x0337	; 0x800337 <__data_end+0x1f5>
+  c2:	fc 01       	movw	r30, r24
+  c4:	ee 5b       	subi	r30, 0xBE	; 190
+  c6:	fe 4f       	sbci	r31, 0xFE	; 254
+  c8:	20 81       	ld	r18, Z
+  ca:	22 23       	and	r18, r18
+  cc:	41 f0       	breq	.+16     	; 0xde <__vector_20+0x38>
+	{
+		UDR0 = out.Buffer[out.currentChar++];
+  ce:	01 96       	adiw	r24, 0x01	; 1
+  d0:	90 93 37 03 	sts	0x0337, r25	; 0x800337 <__data_end+0x1f5>
+  d4:	80 93 36 03 	sts	0x0336, r24	; 0x800336 <__data_end+0x1f4>
+  d8:	20 93 c6 00 	sts	0x00C6, r18	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7e00c6>
+  dc:	0f c0       	rjmp	.+30     	; 0xfc <__vector_20+0x56>
+	}
+	else   /*siamo giunti al carattere nullo di terminazione*/
+	{
+		out.currentChar = 0;
+  de:	10 92 37 03 	sts	0x0337, r1	; 0x800337 <__data_end+0x1f5>
+  e2:	10 92 36 03 	sts	0x0336, r1	; 0x800336 <__data_end+0x1f4>
+		out.taken_space = 0;
+  e6:	10 92 39 03 	sts	0x0339, r1	; 0x800339 <__data_end+0x1f7>
+  ea:	10 92 38 03 	sts	0x0338, r1	; 0x800338 <__data_end+0x1f6>
+		out.owf = false;
+  ee:	10 92 3a 03 	sts	0x033A, r1	; 0x80033a <__data_end+0x1f8>
+		UCSR0B &= ~(1 << TXCIE0);
+  f2:	e1 ec       	ldi	r30, 0xC1	; 193
+  f4:	f0 e0       	ldi	r31, 0x00	; 0
+  f6:	80 81       	ld	r24, Z
+  f8:	8f 7b       	andi	r24, 0xBF	; 191
+  fa:	80 83       	st	Z, r24
+	}
+}
+  fc:	ff 91       	pop	r31
+  fe:	ef 91       	pop	r30
+ 100:	9f 91       	pop	r25
+ 102:	8f 91       	pop	r24
+ 104:	2f 91       	pop	r18
+ 106:	0f 90       	pop	r0
+ 108:	0f be       	out	0x3f, r0	; 63
+ 10a:	0f 90       	pop	r0
+ 10c:	1f 90       	pop	r1
+ 10e:	18 95       	reti
+
+00000110 <serial_init>:
+    }
+}
+
+void serial_init(void){
+	
+	UBRR0L = UBRRL_VALUE;
+ 110:	87 e6       	ldi	r24, 0x67	; 103
+ 112:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7e00c4>
+	UBRR0H = UBRRH_VALUE;
+ 116:	10 92 c5 00 	sts	0x00C5, r1	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7e00c5>
+	
+	UCSR0C |= (1 << UPM01) | (1 << UCSZ00) | (1 << UCSZ01);
+ 11a:	e2 ec       	ldi	r30, 0xC2	; 194
+ 11c:	f0 e0       	ldi	r31, 0x00	; 0
+ 11e:	80 81       	ld	r24, Z
+ 120:	86 62       	ori	r24, 0x26	; 38
+ 122:	80 83       	st	Z, r24
+	UCSR0A |= (1 << U2X0);
+ 124:	e0 ec       	ldi	r30, 0xC0	; 192
+ 126:	f0 e0       	ldi	r31, 0x00	; 0
+ 128:	80 81       	ld	r24, Z
+ 12a:	82 60       	ori	r24, 0x02	; 2
+ 12c:	80 83       	st	Z, r24
+	UCSR0B |= (1 << TXEN0);
+ 12e:	e1 ec       	ldi	r30, 0xC1	; 193
+ 130:	f0 e0       	ldi	r31, 0x00	; 0
+ 132:	80 81       	ld	r24, Z
+ 134:	88 60       	ori	r24, 0x08	; 8
+ 136:	80 83       	st	Z, r24
+ 138:	08 95       	ret
+
+0000013a <transmit>:
+	
+	return;
+}
+
+void transmit(char * string)
+{
+ 13a:	0f 93       	push	r16
+ 13c:	1f 93       	push	r17
+ 13e:	cf 93       	push	r28
+ 140:	df 93       	push	r29
+ 142:	ec 01       	movw	r28, r24
+	if (!out.currentChar)
+ 144:	80 91 36 03 	lds	r24, 0x0336	; 0x800336 <__data_end+0x1f4>
+ 148:	90 91 37 03 	lds	r25, 0x0337	; 0x800337 <__data_end+0x1f5>
+ 14c:	89 2b       	or	r24, r25
+ 14e:	c1 f5       	brne	.+112    	; 0x1c0 <transmit+0x86>
+	{
+		strncpy(out.Buffer, string, BUFFSIZE);
+ 150:	44 ef       	ldi	r20, 0xF4	; 244
+ 152:	51 e0       	ldi	r21, 0x01	; 1
+ 154:	be 01       	movw	r22, r28
+ 156:	82 e4       	ldi	r24, 0x42	; 66
+ 158:	91 e0       	ldi	r25, 0x01	; 1
+ 15a:	0e 94 4f 01 	call	0x29e	; 0x29e <strncpy>
+		
+		if(strlen(string) + 1 > BUFFSIZE)	/*se si verifica overflow fin dalla prima stringa, lo handla*/
+ 15e:	fe 01       	movw	r30, r28
+ 160:	01 90       	ld	r0, Z+
+ 162:	00 20       	and	r0, r0
+ 164:	e9 f7       	brne	.-6      	; 0x160 <transmit+0x26>
+ 166:	cf 01       	movw	r24, r30
+ 168:	8c 1b       	sub	r24, r28
+ 16a:	9d 0b       	sbc	r25, r29
+ 16c:	85 3f       	cpi	r24, 0xF5	; 245
+ 16e:	21 e0       	ldi	r18, 0x01	; 1
+ 170:	92 07       	cpc	r25, r18
+ 172:	60 f0       	brcs	.+24     	; 0x18c <transmit+0x52>
+		{
+			out.taken_space = BUFFSIZE;
+ 174:	84 ef       	ldi	r24, 0xF4	; 244
+ 176:	91 e0       	ldi	r25, 0x01	; 1
+ 178:	90 93 39 03 	sts	0x0339, r25	; 0x800339 <__data_end+0x1f7>
+ 17c:	80 93 38 03 	sts	0x0338, r24	; 0x800338 <__data_end+0x1f6>
+			out.owf = true;
+ 180:	81 e0       	ldi	r24, 0x01	; 1
+ 182:	80 93 3a 03 	sts	0x033A, r24	; 0x80033a <__data_end+0x1f8>
+			out.Buffer[BUFFSIZE - 1] = 0;	/*appende il null terminating char per far si che il buffer venga svuotato appena finisce l'invio della stringa*/
+ 186:	10 92 35 03 	sts	0x0335, r1	; 0x800335 <__data_end+0x1f3>
+ 18a:	04 c0       	rjmp	.+8      	; 0x194 <transmit+0x5a>
+		}
+		
+		else
+		{
+			out.taken_space = strlen(string) + 1; /*il +1 è il null char*/	
+ 18c:	90 93 39 03 	sts	0x0339, r25	; 0x800339 <__data_end+0x1f7>
+ 190:	80 93 38 03 	sts	0x0338, r24	; 0x800338 <__data_end+0x1f6>
+		}
+		
+		UCSR0B |= (1 << TXCIE0);
+ 194:	e1 ec       	ldi	r30, 0xC1	; 193
+ 196:	f0 e0       	ldi	r31, 0x00	; 0
+ 198:	80 81       	ld	r24, Z
+ 19a:	80 64       	ori	r24, 0x40	; 64
+ 19c:	80 83       	st	Z, r24
+		UDR0 = out.Buffer[out.currentChar++];
+ 19e:	e6 e3       	ldi	r30, 0x36	; 54
+ 1a0:	f3 e0       	ldi	r31, 0x03	; 3
+ 1a2:	80 81       	ld	r24, Z
+ 1a4:	91 81       	ldd	r25, Z+1	; 0x01
+ 1a6:	9c 01       	movw	r18, r24
+ 1a8:	2f 5f       	subi	r18, 0xFF	; 255
+ 1aa:	3f 4f       	sbci	r19, 0xFF	; 255
+ 1ac:	31 83       	std	Z+1, r19	; 0x01
+ 1ae:	20 83       	st	Z, r18
+ 1b0:	fc 01       	movw	r30, r24
+ 1b2:	ee 5b       	subi	r30, 0xBE	; 190
+ 1b4:	fe 4f       	sbci	r31, 0xFE	; 254
+ 1b6:	80 81       	ld	r24, Z
+ 1b8:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7e00c6>
+		sei();
+ 1bc:	78 94       	sei
+ 1be:	39 c0       	rjmp	.+114    	; 0x232 <transmit+0xf8>
+	}
+	else	/*handle overflow -> mi basta fare tutto come strNcat limitandolo alla dimensione restante del buffer :/*/
+	{
+		strncat(out.Buffer, string, BUFFSIZE - out.taken_space);
+ 1c0:	08 e3       	ldi	r16, 0x38	; 56
+ 1c2:	13 e0       	ldi	r17, 0x03	; 3
+ 1c4:	d8 01       	movw	r26, r16
+ 1c6:	8d 91       	ld	r24, X+
+ 1c8:	9c 91       	ld	r25, X
+ 1ca:	44 ef       	ldi	r20, 0xF4	; 244
+ 1cc:	51 e0       	ldi	r21, 0x01	; 1
+ 1ce:	48 1b       	sub	r20, r24
+ 1d0:	59 0b       	sbc	r21, r25
+ 1d2:	be 01       	movw	r22, r28
+ 1d4:	82 e4       	ldi	r24, 0x42	; 66
+ 1d6:	91 e0       	ldi	r25, 0x01	; 1
+ 1d8:	0e 94 3f 01 	call	0x27e	; 0x27e <strncat>
+		
+		if (strlen(string) + out.taken_space > BUFFSIZE)	//lo spazio out.tknspc è gia comprensivo del carattere nullo che sarà sovrascritto
+ 1dc:	fe 01       	movw	r30, r28
+ 1de:	01 90       	ld	r0, Z+
+ 1e0:	00 20       	and	r0, r0
+ 1e2:	e9 f7       	brne	.-6      	; 0x1de <transmit+0xa4>
+ 1e4:	31 97       	sbiw	r30, 0x01	; 1
+ 1e6:	ec 1b       	sub	r30, r28
+ 1e8:	fd 0b       	sbc	r31, r29
+ 1ea:	d8 01       	movw	r26, r16
+ 1ec:	8d 91       	ld	r24, X+
+ 1ee:	9c 91       	ld	r25, X
+ 1f0:	e8 0f       	add	r30, r24
+ 1f2:	f9 1f       	adc	r31, r25
+ 1f4:	e5 3f       	cpi	r30, 0xF5	; 245
+ 1f6:	f1 40       	sbci	r31, 0x01	; 1
+ 1f8:	60 f0       	brcs	.+24     	; 0x212 <transmit+0xd8>
+		{
+			out.owf = true;
+ 1fa:	81 e0       	ldi	r24, 0x01	; 1
+ 1fc:	80 93 3a 03 	sts	0x033A, r24	; 0x80033a <__data_end+0x1f8>
+			out.taken_space = BUFFSIZE;
+ 200:	84 ef       	ldi	r24, 0xF4	; 244
+ 202:	91 e0       	ldi	r25, 0x01	; 1
+ 204:	90 93 39 03 	sts	0x0339, r25	; 0x800339 <__data_end+0x1f7>
+ 208:	80 93 38 03 	sts	0x0338, r24	; 0x800338 <__data_end+0x1f6>
+			out.Buffer[BUFFSIZE - 1] = 0;	/*appende il null terminating char per far si che il buffer venga svuotato appena finisce l'invio della stringa*/
+ 20c:	10 92 35 03 	sts	0x0335, r1	; 0x800335 <__data_end+0x1f3>
+ 210:	10 c0       	rjmp	.+32     	; 0x232 <transmit+0xf8>
+		}
+		else
+		{
+			out.owf = false;
+ 212:	10 92 3a 03 	sts	0x033A, r1	; 0x80033a <__data_end+0x1f8>
+			out.taken_space += strlen(string) + 1;
+ 216:	fe 01       	movw	r30, r28
+ 218:	01 90       	ld	r0, Z+
+ 21a:	00 20       	and	r0, r0
+ 21c:	e9 f7       	brne	.-6      	; 0x218 <transmit+0xde>
+ 21e:	31 97       	sbiw	r30, 0x01	; 1
+ 220:	ec 1b       	sub	r30, r28
+ 222:	fd 0b       	sbc	r31, r29
+ 224:	01 96       	adiw	r24, 0x01	; 1
+ 226:	e8 0f       	add	r30, r24
+ 228:	f9 1f       	adc	r31, r25
+ 22a:	f0 93 39 03 	sts	0x0339, r31	; 0x800339 <__data_end+0x1f7>
+ 22e:	e0 93 38 03 	sts	0x0338, r30	; 0x800338 <__data_end+0x1f6>
+		}
+	}
+}
+ 232:	df 91       	pop	r29
+ 234:	cf 91       	pop	r28
+ 236:	1f 91       	pop	r17
+ 238:	0f 91       	pop	r16
+ 23a:	08 95       	ret
+
+0000023c <main>:
+	}
+}
+
+int main(void)
+{ 
+	serial_init();
+ 23c:	0e 94 88 00 	call	0x110	; 0x110 <serial_init>
+	transmit("Ciaoooooooooooooooooooooooooooooooooooo!\n");	
+ 240:	80 e0       	ldi	r24, 0x00	; 0
+ 242:	91 e0       	ldi	r25, 0x01	; 1
+ 244:	0e 94 9d 00 	call	0x13a	; 0x13a <transmit>
+    while (1) 
+    {
+		transmit("Maria ");
+		transmit("e Davide!\n");
+		if (out.owf)
+ 248:	ca e3       	ldi	r28, 0x3A	; 58
+ 24a:	d3 e0       	ldi	r29, 0x03	; 3
+{ 
+	serial_init();
+	transmit("Ciaoooooooooooooooooooooooooooooooooooo!\n");	
+    while (1) 
+    {
+		transmit("Maria ");
+ 24c:	8a e2       	ldi	r24, 0x2A	; 42
+ 24e:	91 e0       	ldi	r25, 0x01	; 1
+ 250:	0e 94 9d 00 	call	0x13a	; 0x13a <transmit>
+		transmit("e Davide!\n");
+ 254:	81 e3       	ldi	r24, 0x31	; 49
+ 256:	91 e0       	ldi	r25, 0x01	; 1
+ 258:	0e 94 9d 00 	call	0x13a	; 0x13a <transmit>
+		if (out.owf)
+ 25c:	88 81       	ld	r24, Y
+ 25e:	88 23       	and	r24, r24
+ 260:	21 f0       	breq	.+8      	; 0x26a <main+0x2e>
+		{
+			transmit("OWF\n");
+ 262:	8c e3       	ldi	r24, 0x3C	; 60
+ 264:	91 e0       	ldi	r25, 0x01	; 1
+ 266:	0e 94 9d 00 	call	0x13a	; 0x13a <transmit>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 26a:	2f ef       	ldi	r18, 0xFF	; 255
+ 26c:	83 ed       	ldi	r24, 0xD3	; 211
+ 26e:	90 e3       	ldi	r25, 0x30	; 48
+ 270:	21 50       	subi	r18, 0x01	; 1
+ 272:	80 40       	sbci	r24, 0x00	; 0
+ 274:	90 40       	sbci	r25, 0x00	; 0
+ 276:	e1 f7       	brne	.-8      	; 0x270 <main+0x34>
+ 278:	00 c0       	rjmp	.+0      	; 0x27a <main+0x3e>
+ 27a:	00 00       	nop
+ 27c:	e7 cf       	rjmp	.-50     	; 0x24c <main+0x10>
+
+0000027e <strncat>:
+ 27e:	fb 01       	movw	r30, r22
+ 280:	dc 01       	movw	r26, r24
+ 282:	0d 90       	ld	r0, X+
+ 284:	00 20       	and	r0, r0
+ 286:	e9 f7       	brne	.-6      	; 0x282 <strncat+0x4>
+ 288:	11 97       	sbiw	r26, 0x01	; 1
+ 28a:	41 50       	subi	r20, 0x01	; 1
+ 28c:	50 40       	sbci	r21, 0x00	; 0
+ 28e:	28 f0       	brcs	.+10     	; 0x29a <strncat+0x1c>
+ 290:	01 90       	ld	r0, Z+
+ 292:	00 20       	and	r0, r0
+ 294:	0d 92       	st	X+, r0
+ 296:	c9 f7       	brne	.-14     	; 0x28a <strncat+0xc>
+ 298:	08 95       	ret
+ 29a:	1c 92       	st	X, r1
+ 29c:	08 95       	ret
+
+0000029e <strncpy>:
+ 29e:	fb 01       	movw	r30, r22
+ 2a0:	dc 01       	movw	r26, r24
+ 2a2:	41 50       	subi	r20, 0x01	; 1
+ 2a4:	50 40       	sbci	r21, 0x00	; 0
+ 2a6:	48 f0       	brcs	.+18     	; 0x2ba <strncpy+0x1c>
+ 2a8:	01 90       	ld	r0, Z+
+ 2aa:	0d 92       	st	X+, r0
+ 2ac:	00 20       	and	r0, r0
+ 2ae:	c9 f7       	brne	.-14     	; 0x2a2 <strncpy+0x4>
+ 2b0:	01 c0       	rjmp	.+2      	; 0x2b4 <strncpy+0x16>
+ 2b2:	1d 92       	st	X+, r1
+ 2b4:	41 50       	subi	r20, 0x01	; 1
+ 2b6:	50 40       	sbci	r21, 0x00	; 0
+ 2b8:	e0 f7       	brcc	.-8      	; 0x2b2 <strncpy+0x14>
+ 2ba:	08 95       	ret
+
+000002bc <_exit>:
+ 2bc:	f8 94       	cli
+
+000002be <__stop_program>:
+ 2be:	ff cf       	rjmp	.-2      	; 0x2be <__stop_program>

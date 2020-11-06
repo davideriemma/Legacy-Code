@@ -1,0 +1,106 @@
+
+AVRASM ver. 2.2.7  D:\Google Drive\Atmel Studio\ASSEMBY_PROJECTS\MOTOROLA_BUS\WriteRoutine\write.asm Mon Apr 30 11:14:08 2018
+
+D:\Google Drive\Atmel Studio\ASSEMBY_PROJECTS\MOTOROLA_BUS\WriteRoutine\write.asm(12): Including file 'D:\Google Drive\Atmel Studio\ASSEMBY_PROJECTS\MOTOROLA_BUS\WriteRoutine\..\mc68008pinDef.inc'
+D:\Google Drive\Atmel Studio\ASSEMBY_PROJECTS\MOTOROLA_BUS\WriteRoutine\..\mc68008pinDef.inc(10): Including file 'C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\avrasm\inc\m328pdef.inc'
+D:\Google Drive\Atmel Studio\ASSEMBY_PROJECTS\MOTOROLA_BUS\WriteRoutine\write.asm(12): Including file 'D:\Google Drive\Atmel Studio\ASSEMBY_PROJECTS\MOTOROLA_BUS\WriteRoutine\..\mc68008pinDef.inc'
+D:\Google Drive\Atmel Studio\ASSEMBY_PROJECTS\MOTOROLA_BUS\WriteRoutine\..\mc68008pinDef.inc(10): Including file 'C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.150\avrasm\inc\m328pdef.inc'
+                                 
+                                 
+                                  * write.asm
+                                  *
+                                  *  Created: 29/04/2018 06:50:49
+                                  *   Author: david
+                                  */ 
+                                  ;routine per la scrittura dei dati "Write TO Motorola"
+                                 
+                                  ;VERSIONE 1.0, PARAMETRI: IL DATO DA SCRIVERE NEL MOTOROLA
+                                 
+                                  .list
+                                 
+                                 	;salva i registri che dovrà usare
+000000 931f                      	push r17
+                                 	;imposta le linee dati come output
+000001 ef1f                      	ser r17
+000002 b914                      	out data_ddr, r17
+                                 	;ottiene il dato dallo stack
+000003 b7cd                      	in YL,SPL
+000004 b7de                      	in YH,SPH
+                                 
+000005 811c                      	ldd	r17, Y + 4
+                                 	;aspetta che il dato sulle linee sia valido
+                                 wait:
+000006 9932                      	sbic data_control_pin, _DS_
+000007 cffe                      	rjmp wait
+                                 	;invia il dato
+000008 b915                      	out data_port,r17
+                                 	;conferma il dato
+000009 9843                      	cbi data_control_port, _DTACK_
+                                 wait_2:
+                                 	;aspetta che il dato sia stato ricevuto (aspetta che AS diventi high)
+00000a 9930                      	sbic data_control_pin, _AS_
+00000b cffe                      	rjmp wait_2
+                                 	;rimuove il dato dal bus
+00000c 2711                      	clr r17
+00000d b915                      	out data_port, r17
+                                 	;nega dtack
+00000e 9a43                      	sbi data_control_port, _DTACK_
+                                 	;la scrittura del dato è ultimata
+                                 	;ripristino dei registri
+00000f 911f                      	pop r17
+000010 9508                      	ret
+                                 
+
+
+RESOURCE USE INFORMATION
+------------------------
+
+Notice:
+The register and instruction counts are symbol table hit counts,
+and hence implicitly used resources are not counted, eg, the
+'lpm' instruction without operands implicitly uses r0 and z,
+none of which are counted.
+
+x,y,z are separate entities in the symbol table and are
+counted separately from r26..r31 here.
+
+.dseg memory usage only counts static data declared with .byte
+
+"ATmega328P" register use summary:
+x  :   0 y  :   1 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
+r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
+r13:   0 r14:   0 r15:   0 r16:   0 r17:   8 r18:   0 r19:   0 r20:   0 
+r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   1 
+r29:   1 r30:   0 r31:   0 
+Registers used: 4 out of 35 (11.4%)
+
+"ATmega328P" instruction use summary:
+.lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
+andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
+brcc  :   0 brcs  :   0 break :   0 breq  :   0 brge  :   0 brhc  :   0 
+brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
+brne  :   0 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   1 cbr   :   0 
+clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   1 cls   :   0 
+clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
+cpi   :   0 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   2 inc   :   0 jmp   :   0 
+ld    :   0 ldd   :   1 ldi   :   0 lds   :   0 lpm   :   0 lsl   :   0 
+lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
+neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   3 pop   :   1 
+push  :   1 rcall :   0 ret   :   1 reti  :   0 rjmp  :   2 rol   :   0 
+ror   :   0 sbc   :   0 sbci  :   0 sbi   :   1 sbic  :   2 sbis  :   0 
+sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
+sei   :   0 sen   :   0 ser   :   1 ses   :   0 set   :   0 sev   :   0 
+sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   0 
+sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
+Instructions used: 12 out of 113 (10.6%)
+
+"ATmega328P" memory use summary [bytes]:
+Segment   Begin    End      Code   Data   Used    Size   Use%
+---------------------------------------------------------------
+[.cseg] 0x000000 0x000022     34      0     34   32768   0.1%
+[.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
+[.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
+
+Assembly complete, 0 errors, 0 warnings

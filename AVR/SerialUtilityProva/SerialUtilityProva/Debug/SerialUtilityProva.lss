@@ -1,0 +1,328 @@
+
+SerialUtilityProva.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  000001fc  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000001a8  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  000001fc  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  0000022c  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000070  00000000  00000000  0000026c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000a08  00000000  00000000  000002dc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000844  00000000  00000000  00000ce4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000549  00000000  00000000  00001528  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000000d0  00000000  00000000  00001a74  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000582  00000000  00000000  00001b44  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000002cb  00000000  00000000  000020c6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000058  00000000  00000000  00002391  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 47 00 	jmp	0x8e	; 0x8e <__ctors_end>
+   4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  48:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__trampolines_end>:
+  68:	54 72       	andi	r21, 0x24	; 36
+  6a:	61 6e       	ori	r22, 0xE1	; 225
+  6c:	73 6d       	ori	r23, 0xD3	; 211
+  6e:	69 74       	andi	r22, 0x49	; 73
+  70:	74 69       	ori	r23, 0x94	; 148
+  72:	6e 67       	ori	r22, 0x7E	; 126
+  74:	20 66       	ori	r18, 0x60	; 96
+  76:	72 6f       	ori	r23, 0xF2	; 242
+  78:	6d 20       	and	r6, r13
+  7a:	6d 65       	ori	r22, 0x5D	; 93
+  7c:	6d 6f       	ori	r22, 0xFD	; 253
+  7e:	72 79       	andi	r23, 0x92	; 146
+  80:	3a 20       	and	r3, r10
+  82:	4e 6f       	ori	r20, 0xFE	; 254
+  84:	20 62       	ori	r18, 0x20	; 32
+  86:	75 66       	ori	r23, 0x65	; 101
+  88:	66 65       	ori	r22, 0x56	; 86
+  8a:	72 2e       	mov	r7, r18
+  8c:	0a 00       	.word	0x000a	; ????
+
+0000008e <__ctors_end>:
+  8e:	11 24       	eor	r1, r1
+  90:	1f be       	out	0x3f, r1	; 63
+  92:	cf ef       	ldi	r28, 0xFF	; 255
+  94:	d8 e0       	ldi	r29, 0x08	; 8
+  96:	de bf       	out	0x3e, r29	; 62
+  98:	cd bf       	out	0x3d, r28	; 61
+  9a:	0e 94 53 00 	call	0xa6	; 0xa6 <main>
+  9e:	0c 94 d2 00 	jmp	0x1a4	; 0x1a4 <_exit>
+
+000000a2 <__bad_interrupt>:
+  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <main>:
+
+#define PgmString(name) static const char name[] PROGMEM
+
+int main(void)
+{
+	SerialEnable(EIGHT_BIT_FRAME, ONE_BIT_STOP, NO_PARITY, TX_ENABLED, ASYNC_SERIAL);
+  a6:	1f 92       	push	r1
+  a8:	88 e0       	ldi	r24, 0x08	; 8
+  aa:	8f 93       	push	r24
+  ac:	1f 92       	push	r1
+  ae:	1f 92       	push	r1
+  b0:	86 e0       	ldi	r24, 0x06	; 6
+  b2:	8f 93       	push	r24
+  b4:	0e 94 6f 00 	call	0xde	; 0xde <SerialEnable>
+  b8:	0f 90       	pop	r0
+  ba:	0f 90       	pop	r0
+  bc:	0f 90       	pop	r0
+  be:	0f 90       	pop	r0
+  c0:	0f 90       	pop	r0
+	
+	PgmString(cptr) = "Transmitting from memory: No buffer.\n";
+
+    while (1) 
+    {
+		printStringfromPgmem(cptr);
+  c2:	88 e6       	ldi	r24, 0x68	; 104
+  c4:	90 e0       	ldi	r25, 0x00	; 0
+  c6:	0e 94 b3 00 	call	0x166	; 0x166 <printStringfromPgmem>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  ca:	2f ef       	ldi	r18, 0xFF	; 255
+  cc:	83 ed       	ldi	r24, 0xD3	; 211
+  ce:	90 e3       	ldi	r25, 0x30	; 48
+  d0:	21 50       	subi	r18, 0x01	; 1
+  d2:	80 40       	sbci	r24, 0x00	; 0
+  d4:	90 40       	sbci	r25, 0x00	; 0
+  d6:	e1 f7       	brne	.-8      	; 0xd0 <main+0x2a>
+  d8:	00 c0       	rjmp	.+0      	; 0xda <main+0x34>
+  da:	00 00       	nop
+  dc:	f2 cf       	rjmp	.-28     	; 0xc2 <main+0x1c>
+
+000000de <SerialEnable>:
+#include <stdbool.h>
+#include <stdarg.h>
+#include "sen.h"
+#include "..\..\bitmacro.h"
+
+void SerialEnable(const uint8_t dataFrame, const uint8_t stop_bit, const uint8_t partity_bit, const uint8_t xline, const bool mode, ... ){
+  de:	cf 93       	push	r28
+  e0:	df 93       	push	r29
+  e2:	cd b7       	in	r28, 0x3d	; 61
+  e4:	de b7       	in	r29, 0x3e	; 62
+  e6:	9d 81       	ldd	r25, Y+5	; 0x05
+	
+	#include <util/setbaud.h>	
+	/*il baudrate è stato già impostato*/
+	UBRR0H = UBRRH_VALUE;
+  e8:	10 92 c5 00 	sts	0x00C5, r1	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7e00c5>
+	UBRR0L = UBRRL_VALUE;
+  ec:	83 e3       	ldi	r24, 0x33	; 51
+  ee:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7e00c4>
+	
+	/*imposta la modalità operativa (sincrona o asincrona)*/
+	
+	if (mode)
+  f2:	89 85       	ldd	r24, Y+9	; 0x09
+  f4:	88 23       	and	r24, r24
+  f6:	39 f0       	breq	.+14     	; 0x106 <SerialEnable+0x28>
+	{
+		SET_BIT(MODE_REG, SYNC_MODE_BIT);	/*abilita la modalità sincrona*/
+  f8:	e2 ec       	ldi	r30, 0xC2	; 194
+  fa:	f0 e0       	ldi	r31, 0x00	; 0
+  fc:	80 81       	ld	r24, Z
+  fe:	80 64       	ori	r24, 0x40	; 64
+ 100:	80 83       	st	Z, r24
+		
+		va_list clock_mode;	/*se viene richiesta una modalità sincrona, tramite l'ellissi è possibile impostare il fronte di clock*/
+		va_start(clock_mode, mode);
+		
+		if (va_arg(clock_mode, bool))
+ 102:	0e 94 cd 00 	call	0x19a	; 0x19a <abort>
+		}
+	}
+	
+	/*imposta la lunghezza del frame*/
+	
+	if (dataFrame == NINE_BIT_FRAME)
+ 106:	91 30       	cpi	r25, 0x01	; 1
+ 108:	71 f4       	brne	.+28     	; 0x126 <SerialEnable+0x48>
+	{
+		SET_BIT(DATA_FRAME_REG, BIT_FRAME_ZERO);	/*111 - 9-bit frame*/
+ 10a:	e2 ec       	ldi	r30, 0xC2	; 194
+ 10c:	f0 e0       	ldi	r31, 0x00	; 0
+ 10e:	80 81       	ld	r24, Z
+ 110:	82 60       	ori	r24, 0x02	; 2
+ 112:	80 83       	st	Z, r24
+		SET_BIT(DATA_FRAME_REG, BIT_FRAME_ONE);
+ 114:	80 81       	ld	r24, Z
+ 116:	84 60       	ori	r24, 0x04	; 4
+ 118:	80 83       	st	Z, r24
+		SET_BIT(DATA_FRAME_REG_9, BIT_FRAME_TWO);
+ 11a:	e1 ec       	ldi	r30, 0xC1	; 193
+ 11c:	f0 e0       	ldi	r31, 0x00	; 0
+ 11e:	80 81       	ld	r24, Z
+ 120:	84 60       	ori	r24, 0x04	; 4
+ 122:	80 83       	st	Z, r24
+ 124:	05 c0       	rjmp	.+10     	; 0x130 <SerialEnable+0x52>
+	}
+	else
+	{
+			DATA_FRAME_REG |= dataFrame;		
+ 126:	e2 ec       	ldi	r30, 0xC2	; 194
+ 128:	f0 e0       	ldi	r31, 0x00	; 0
+ 12a:	80 81       	ld	r24, Z
+ 12c:	89 2b       	or	r24, r25
+ 12e:	80 83       	st	Z, r24
+	}
+	
+	/*imposta il bit di stop, specificato dalle macro passate per argomento*/
+	BIT_STOP_REG |= stop_bit;
+ 130:	e2 ec       	ldi	r30, 0xC2	; 194
+ 132:	f0 e0       	ldi	r31, 0x00	; 0
+ 134:	90 81       	ld	r25, Z
+ 136:	8e 81       	ldd	r24, Y+6	; 0x06
+ 138:	89 2b       	or	r24, r25
+ 13a:	80 83       	st	Z, r24
+	
+	/*imposta il controllo di parità del frame ricevuto*/
+	
+	BIT_CONTROL_REG |= partity_bit;
+ 13c:	90 81       	ld	r25, Z
+ 13e:	8f 81       	ldd	r24, Y+7	; 0x07
+ 140:	89 2b       	or	r24, r25
+ 142:	80 83       	st	Z, r24
+	
+	/*inizializza le linee di comunicazione*/
+	
+	COMU_REG |= xline;
+ 144:	e1 ec       	ldi	r30, 0xC1	; 193
+ 146:	f0 e0       	ldi	r31, 0x00	; 0
+ 148:	90 81       	ld	r25, Z
+ 14a:	88 85       	ldd	r24, Y+8	; 0x08
+ 14c:	89 2b       	or	r24, r25
+ 14e:	80 83       	st	Z, r24
+		
+	return;
+}
+ 150:	df 91       	pop	r29
+ 152:	cf 91       	pop	r28
+ 154:	08 95       	ret
+
+00000156 <transmitByte>:
+	transmitByte(string[i]);
+	i++;
+  }	
+
+	return;
+}
+ 156:	e0 ec       	ldi	r30, 0xC0	; 192
+ 158:	f0 e0       	ldi	r31, 0x00	; 0
+ 15a:	90 81       	ld	r25, Z
+ 15c:	95 ff       	sbrs	r25, 5
+ 15e:	fd cf       	rjmp	.-6      	; 0x15a <transmitByte+0x4>
+ 160:	80 93 c6 00 	sts	0x00C6, r24	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7e00c6>
+ 164:	08 95       	ret
+
+00000166 <printStringfromPgmem>:
+	/* Wait for empty transmit buffer */
+	loop_until_bit_is_set(UCSR0A, UDRE0);
+	UDR0 = data;                                            /* send data */
+}
+
+void printStringfromPgmem(const char * stringFromPgmem){
+ 166:	0f 93       	push	r16
+ 168:	1f 93       	push	r17
+ 16a:	cf 93       	push	r28
+
+	uint8_t i = 0;
+
+	while (pgm_read_byte(&stringFromPgmem[i])) {
+ 16c:	9c 01       	movw	r18, r24
+ 16e:	fc 01       	movw	r30, r24
+ 170:	44 91       	lpm	r20, Z
+ 172:	44 23       	and	r20, r20
+ 174:	71 f0       	breq	.+28     	; 0x192 <printStringfromPgmem+0x2c>
+ 176:	8c 01       	movw	r16, r24
+ 178:	c0 e0       	ldi	r28, 0x00	; 0
+
+		transmitByte(pgm_read_byte(&stringFromPgmem[i]));
+ 17a:	f9 01       	movw	r30, r18
+ 17c:	84 91       	lpm	r24, Z
+ 17e:	0e 94 ab 00 	call	0x156	; 0x156 <transmitByte>
+		i++;
+ 182:	cf 5f       	subi	r28, 0xFF	; 255
+
+void printStringfromPgmem(const char * stringFromPgmem){
+
+	uint8_t i = 0;
+
+	while (pgm_read_byte(&stringFromPgmem[i])) {
+ 184:	98 01       	movw	r18, r16
+ 186:	2c 0f       	add	r18, r28
+ 188:	31 1d       	adc	r19, r1
+ 18a:	f9 01       	movw	r30, r18
+ 18c:	94 91       	lpm	r25, Z
+ 18e:	91 11       	cpse	r25, r1
+ 190:	f4 cf       	rjmp	.-24     	; 0x17a <printStringfromPgmem+0x14>
+		transmitByte(pgm_read_byte(&stringFromPgmem[i]));
+		i++;
+	}
+
+	return;
+}
+ 192:	cf 91       	pop	r28
+ 194:	1f 91       	pop	r17
+ 196:	0f 91       	pop	r16
+ 198:	08 95       	ret
+
+0000019a <abort>:
+ 19a:	81 e0       	ldi	r24, 0x01	; 1
+ 19c:	90 e0       	ldi	r25, 0x00	; 0
+ 19e:	f8 94       	cli
+ 1a0:	0c 94 d2 00 	jmp	0x1a4	; 0x1a4 <_exit>
+
+000001a4 <_exit>:
+ 1a4:	f8 94       	cli
+
+000001a6 <__stop_program>:
+ 1a6:	ff cf       	rjmp	.-2      	; 0x1a6 <__stop_program>

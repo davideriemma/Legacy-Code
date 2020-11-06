@@ -1,0 +1,119 @@
+
+ISR_ATTINY_PROVA.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000064  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800040  00800040  000000b8  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  000000b8  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000000e8  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000028  00000000  00000000  00000124  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000004b9  00000000  00000000  0000014c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000455  00000000  00000000  00000605  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000001c6  00000000  00000000  00000a5a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000048  00000000  00000000  00000c20  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000002f5  00000000  00000000  00000c68  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000049  00000000  00000000  00000f5d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000018  00000000  00000000  00000fa6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0f c0       	rjmp	.+30     	; 0x20 <__ctors_end>
+   2:	17 c0       	rjmp	.+46     	; 0x32 <__vector_1>
+   4:	15 c0       	rjmp	.+42     	; 0x30 <__bad_interrupt>
+   6:	14 c0       	rjmp	.+40     	; 0x30 <__bad_interrupt>
+   8:	13 c0       	rjmp	.+38     	; 0x30 <__bad_interrupt>
+   a:	12 c0       	rjmp	.+36     	; 0x30 <__bad_interrupt>
+   c:	11 c0       	rjmp	.+34     	; 0x30 <__bad_interrupt>
+   e:	10 c0       	rjmp	.+32     	; 0x30 <__bad_interrupt>
+  10:	0f c0       	rjmp	.+30     	; 0x30 <__bad_interrupt>
+  12:	0e c0       	rjmp	.+28     	; 0x30 <__bad_interrupt>
+  14:	0d c0       	rjmp	.+26     	; 0x30 <__bad_interrupt>
+  16:	0c c0       	rjmp	.+24     	; 0x30 <__bad_interrupt>
+  18:	0b c0       	rjmp	.+22     	; 0x30 <__bad_interrupt>
+  1a:	0a c0       	rjmp	.+20     	; 0x30 <__bad_interrupt>
+  1c:	09 c0       	rjmp	.+18     	; 0x30 <__bad_interrupt>
+  1e:	08 c0       	rjmp	.+16     	; 0x30 <__bad_interrupt>
+
+00000020 <__ctors_end>:
+  20:	11 27       	eor	r17, r17
+  22:	1f bf       	out	0x3f, r17	; 63
+  24:	cf e5       	ldi	r28, 0x5F	; 95
+  26:	d0 e0       	ldi	r29, 0x00	; 0
+  28:	de bf       	out	0x3e, r29	; 62
+  2a:	cd bf       	out	0x3d, r28	; 61
+  2c:	14 d0       	rcall	.+40     	; 0x56 <main>
+  2e:	18 c0       	rjmp	.+48     	; 0x60 <_exit>
+
+00000030 <__bad_interrupt>:
+  30:	e7 cf       	rjmp	.-50     	; 0x0 <__vectors>
+
+00000032 <__vector_1>:
+#define INT0_INTREN_BIT INT0
+
+#define INT0_INTFLAG_REG EICRA
+#define INT0_MODE_1 ISC01
+
+ISR(INT0_vect){
+  32:	1f 93       	push	r17
+  34:	0f 93       	push	r16
+  36:	0f b7       	in	r16, 0x3f	; 63
+  38:	0f 93       	push	r16
+  3a:	10 e0       	ldi	r17, 0x00	; 0
+  3c:	4f 93       	push	r20
+  3e:	5f 93       	push	r21
+	
+	TOGGLE_BIT(PORTA, PORTA5);
+  40:	52 b1       	in	r21, 0x02	; 2
+  42:	40 e2       	ldi	r20, 0x20	; 32
+  44:	45 27       	eor	r20, r21
+  46:	42 b9       	out	0x02, r20	; 2
+}
+  48:	5f 91       	pop	r21
+  4a:	4f 91       	pop	r20
+  4c:	0f 91       	pop	r16
+  4e:	0f bf       	out	0x3f, r16	; 63
+  50:	0f 91       	pop	r16
+  52:	1f 91       	pop	r17
+  54:	18 95       	reti
+
+00000056 <main>:
+}
+
+
+int main(void)
+{
+    SET_BIT(DDRA, PORTA5);
+  56:	0d 9a       	sbi	0x01, 5	; 1
+	TOGGLE_BIT(PORTA, PORTA5);
+}
+
+void inline initINT0interrupt(void){
+	
+	SET_BIT(INT0_INTREN_REG, INT0_INTREN_BIT);
+  58:	98 9a       	sbi	0x13, 0	; 19
+	SET_BIT(INT0_INTFLAG_REG, INT0_MODE_1);
+  5a:	a9 9a       	sbi	0x15, 1	; 21
+	
+	sei();
+  5c:	78 94       	sei
+  5e:	ff cf       	rjmp	.-2      	; 0x5e <main+0x8>
+
+00000060 <_exit>:
+  60:	f8 94       	cli
+
+00000062 <__stop_program>:
+  62:	ff cf       	rjmp	.-2      	; 0x62 <__stop_program>

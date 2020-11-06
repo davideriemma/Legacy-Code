@@ -1,0 +1,8 @@
+	org $000
+reset_ssp	dc.l	$000
+	org $004
+init_pc	dc.l	$008
+
+	org $008
+start	bra start
+	end start

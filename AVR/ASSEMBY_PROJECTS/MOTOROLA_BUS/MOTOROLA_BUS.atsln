@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Atmel Studio Solution File, Format Version 11.00
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{18226A42-8477-4023-8AD2-40C49DA407C9}") = "MOTOROLA_BUS", "MOTOROLA_BUS\MOTOROLA_BUS.asmproj", "{59B1D629-9DCC-43ED-A0FD-8AB0E4D622AB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3BA1AAD6-3938-4AA4-B17F-80D1229F40AE}"
+	ProjectSection(SolutionItems) = preProject
+		mc68008pinDef.inc = mc68008pinDef.inc
+	EndProjectSection
+EndProject
+Project("{18226A42-8477-4023-8AD2-40C49DA407C9}") = "WriteRoutine", "WriteRoutine\WriteRoutine.asmproj", "{0DBA5107-B579-495A-A655-DBFF3619AEDA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59B1D629-9DCC-43ED-A0FD-8AB0E4D622AB}.Debug|AVR.ActiveCfg = Debug|AVR
+		{59B1D629-9DCC-43ED-A0FD-8AB0E4D622AB}.Debug|AVR.Build.0 = Debug|AVR
+		{59B1D629-9DCC-43ED-A0FD-8AB0E4D622AB}.Release|AVR.ActiveCfg = Release|AVR
+		{59B1D629-9DCC-43ED-A0FD-8AB0E4D622AB}.Release|AVR.Build.0 = Release|AVR
+		{0DBA5107-B579-495A-A655-DBFF3619AEDA}.Debug|AVR.ActiveCfg = Debug|AVR
+		{0DBA5107-B579-495A-A655-DBFF3619AEDA}.Debug|AVR.Build.0 = Debug|AVR
+		{0DBA5107-B579-495A-A655-DBFF3619AEDA}.Release|AVR.ActiveCfg = Release|AVR
+		{0DBA5107-B579-495A-A655-DBFF3619AEDA}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

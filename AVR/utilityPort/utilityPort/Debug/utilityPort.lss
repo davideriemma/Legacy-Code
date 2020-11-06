@@ -1,0 +1,422 @@
+
+utilityPort.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000001f8  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .rodata       00000021  000041f8  000001f8  0000026c  2**0
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+  2 .data         00000000  00800040  00800040  0000028d  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  3 .comment      00000030  00000000  00000000  0000028d  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000002c0  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000070  00000000  00000000  000002fc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000805  00000000  00000000  0000036c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000650  00000000  00000000  00000b71  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000051b  00000000  00000000  000011c1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000000dc  00000000  00000000  000016dc  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000458  00000000  00000000  000017b8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000002f5  00000000  00000000  00001c10  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000058  00000000  00000000  00001f05  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0f c0       	rjmp	.+30     	; 0x20 <__ctors_end>
+   2:	16 c0       	rjmp	.+44     	; 0x30 <__bad_interrupt>
+   4:	15 c0       	rjmp	.+42     	; 0x30 <__bad_interrupt>
+   6:	14 c0       	rjmp	.+40     	; 0x30 <__bad_interrupt>
+   8:	13 c0       	rjmp	.+38     	; 0x30 <__bad_interrupt>
+   a:	12 c0       	rjmp	.+36     	; 0x30 <__bad_interrupt>
+   c:	11 c0       	rjmp	.+34     	; 0x30 <__bad_interrupt>
+   e:	10 c0       	rjmp	.+32     	; 0x30 <__bad_interrupt>
+  10:	0f c0       	rjmp	.+30     	; 0x30 <__bad_interrupt>
+  12:	0e c0       	rjmp	.+28     	; 0x30 <__bad_interrupt>
+  14:	0d c0       	rjmp	.+26     	; 0x30 <__bad_interrupt>
+  16:	0c c0       	rjmp	.+24     	; 0x30 <__bad_interrupt>
+  18:	0b c0       	rjmp	.+22     	; 0x30 <__bad_interrupt>
+  1a:	0a c0       	rjmp	.+20     	; 0x30 <__bad_interrupt>
+  1c:	09 c0       	rjmp	.+18     	; 0x30 <__bad_interrupt>
+  1e:	08 c0       	rjmp	.+16     	; 0x30 <__bad_interrupt>
+
+00000020 <__ctors_end>:
+  20:	11 27       	eor	r17, r17
+  22:	1f bf       	out	0x3f, r17	; 63
+  24:	cf e5       	ldi	r28, 0x5F	; 95
+  26:	d0 e0       	ldi	r29, 0x00	; 0
+  28:	de bf       	out	0x3e, r29	; 62
+  2a:	cd bf       	out	0x3d, r28	; 61
+  2c:	02 d0       	rcall	.+4      	; 0x32 <main>
+  2e:	e2 c0       	rjmp	.+452    	; 0x1f4 <_exit>
+
+00000030 <__bad_interrupt>:
+  30:	e7 cf       	rjmp	.-50     	; 0x0 <__vectors>
+
+00000032 <main>:
+}
+
+int main(void)
+{
+    
+	SerialEnable(9600, EIGHT_BIT_FRAME, ONE_BIT_STOP, NO_PARITY, TX_ENABLED | RX_ENABLED, ASYNC_SERIAL);
+  32:	1f 93       	push	r17
+  34:	48 e1       	ldi	r20, 0x18	; 24
+  36:	4f 93       	push	r20
+  38:	1f 93       	push	r17
+  3a:	1f 93       	push	r17
+  3c:	46 e0       	ldi	r20, 0x06	; 6
+  3e:	4f 93       	push	r20
+  40:	45 e2       	ldi	r20, 0x25	; 37
+  42:	4f 93       	push	r20
+  44:	40 e8       	ldi	r20, 0x80	; 128
+  46:	4f 93       	push	r20
+  48:	1b d0       	rcall	.+54     	; 0x80 <SerialEnable>
+	
+	SET_OUTPUT_DIR(DDRA, PORTA5);
+  4a:	0d 9a       	sbi	0x01, 5	; 1
+  4c:	4d b7       	in	r20, 0x3d	; 61
+  4e:	5e b7       	in	r21, 0x3e	; 62
+  50:	49 5f       	subi	r20, 0xF9	; 249
+  52:	5f 4f       	sbci	r21, 0xFF	; 255
+  54:	0f b7       	in	r16, 0x3f	; 63
+  56:	f8 94       	cli
+  58:	5e bf       	out	0x3e, r21	; 62
+  5a:	0f bf       	out	0x3f, r16	; 63
+  5c:	4d bf       	out	0x3d, r20	; 61
+	
+    while (1) 
+    {
+		TOGGLE_BIT(DDRA, PORTA5);
+  5e:	51 b1       	in	r21, 0x01	; 1
+  60:	40 e2       	ldi	r20, 0x20	; 32
+  62:	45 27       	eor	r20, r21
+  64:	41 b9       	out	0x01, r20	; 1
+		printString("Immettere Codice di attivazione\n");
+  66:	88 ef       	ldi	r24, 0xF8	; 248
+  68:	91 e4       	ldi	r25, 0x41	; 65
+  6a:	67 d0       	rcall	.+206    	; 0x13a <printString>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  6c:	5f e3       	ldi	r21, 0x3F	; 63
+  6e:	6d e0       	ldi	r22, 0x0D	; 13
+  70:	43 e0       	ldi	r20, 0x03	; 3
+  72:	51 50       	subi	r21, 0x01	; 1
+  74:	60 40       	sbci	r22, 0x00	; 0
+  76:	40 40       	sbci	r20, 0x00	; 0
+  78:	e1 f7       	brne	.-8      	; 0x72 <__stack+0x13>
+  7a:	00 c0       	rjmp	.+0      	; 0x7c <__stack+0x1d>
+  7c:	00 00       	nop
+  7e:	ef cf       	rjmp	.-34     	; 0x5e <__SREG__+0x1f>
+
+00000080 <SerialEnable>:
+
+	#define F_CPU 1000000L
+
+#endif
+
+void SerialEnable(unsigned int baudRate, uint8_t dataFrame, const uint8_t stop_bit, const uint8_t partity_bit, const uint8_t xline, const bool mode, ... ){
+  80:	2f 93       	push	r18
+  82:	3f 93       	push	r19
+  84:	cf 93       	push	r28
+  86:	df 93       	push	r29
+  88:	cd b7       	in	r28, 0x3d	; 61
+  8a:	de b7       	in	r29, 0x3e	; 62
+	
+	unsigned int Rate = F_CPU / 16 / (baudRate - 1);
+  8c:	c9 5f       	subi	r28, 0xF9	; 249
+  8e:	df 4f       	sbci	r29, 0xFF	; 255
+  90:	29 91       	ld	r18, Y+
+  92:	38 81       	ld	r19, Y
+  94:	c8 50       	subi	r28, 0x08	; 8
+  96:	d0 40       	sbci	r29, 0x00	; 0
+  98:	21 50       	subi	r18, 0x01	; 1
+  9a:	31 0b       	sbc	r19, r17
+  9c:	40 e0       	ldi	r20, 0x00	; 0
+  9e:	50 e0       	ldi	r21, 0x00	; 0
+  a0:	64 e2       	ldi	r22, 0x24	; 36
+  a2:	74 ef       	ldi	r23, 0xF4	; 244
+  a4:	80 e0       	ldi	r24, 0x00	; 0
+  a6:	90 e0       	ldi	r25, 0x00	; 0
+  a8:	5e d0       	rcall	.+188    	; 0x166 <__divmodsi4>
+	
+	UBRRH = (unsigned int) Rate >> LBAUD_REG_SIZE;
+  aa:	63 2f       	mov	r22, r19
+  ac:	77 27       	eor	r23, r23
+  ae:	6a b9       	out	0x0a, r22	; 10
+	UBRRL = (unsigned int) Rate;
+  b0:	29 b9       	out	0x09, r18	; 9
+	
+	/*imposta la modalità operativa (sincrona o asincrona)*/
+	
+	if (mode)
+  b2:	c3 5f       	subi	r28, 0xF3	; 243
+  b4:	df 4f       	sbci	r29, 0xFF	; 255
+  b6:	48 81       	ld	r20, Y
+  b8:	cd 50       	subi	r28, 0x0D	; 13
+  ba:	d0 40       	sbci	r29, 0x00	; 0
+  bc:	44 23       	and	r20, r20
+  be:	21 f0       	breq	.+8      	; 0xc8 <SerialEnable+0x48>
+	{
+		SET_BIT(MODE_REG, SYNC_MODE_BIT);	/*abilita la modalità sincrona*/
+  c0:	4c b1       	in	r20, 0x0c	; 12
+  c2:	40 64       	ori	r20, 0x40	; 64
+  c4:	4c b9       	out	0x0c, r20	; 12
+		
+		va_list clock_mode;	/*se viene richiesta una modalità sincrona, tramite l'ellissi è possibile impostare il fronte di clock*/
+		va_start(clock_mode, mode);
+		
+		if (va_arg(clock_mode, bool))
+  c6:	92 d0       	rcall	.+292    	; 0x1ec <abort>
+		}
+	}
+	
+	/*imposta la lunghezza del frame*/
+	
+	if (dataFrame == NINE_BIT_FRAME)
+  c8:	c7 5f       	subi	r28, 0xF7	; 247
+  ca:	df 4f       	sbci	r29, 0xFF	; 255
+  cc:	48 81       	ld	r20, Y
+  ce:	c9 50       	subi	r28, 0x09	; 9
+  d0:	d0 40       	sbci	r29, 0x00	; 0
+  d2:	41 30       	cpi	r20, 0x01	; 1
+  d4:	51 f4       	brne	.+20     	; 0xea <SerialEnable+0x6a>
+	{
+		SET_BIT(DATA_FRAME_REG, BIT_FRAME_ZERO);	/*111 - 9-bit frame*/
+  d6:	4c b1       	in	r20, 0x0c	; 12
+  d8:	42 60       	ori	r20, 0x02	; 2
+  da:	4c b9       	out	0x0c, r20	; 12
+		SET_BIT(DATA_FRAME_REG, BIT_FRAME_ONE);
+  dc:	4c b1       	in	r20, 0x0c	; 12
+  de:	44 60       	ori	r20, 0x04	; 4
+  e0:	4c b9       	out	0x0c, r20	; 12
+		SET_BIT(DATA_FRAME_REG_9, BIT_FRAME_TWO);
+  e2:	4d b1       	in	r20, 0x0d	; 13
+  e4:	44 60       	ori	r20, 0x04	; 4
+  e6:	4d b9       	out	0x0d, r20	; 13
+  e8:	08 c0       	rjmp	.+16     	; 0xfa <SerialEnable+0x7a>
+	}
+	else
+	{
+			DATA_FRAME_REG |= dataFrame;		
+  ea:	4c b1       	in	r20, 0x0c	; 12
+  ec:	c7 5f       	subi	r28, 0xF7	; 247
+  ee:	df 4f       	sbci	r29, 0xFF	; 255
+  f0:	58 81       	ld	r21, Y
+  f2:	c9 50       	subi	r28, 0x09	; 9
+  f4:	d0 40       	sbci	r29, 0x00	; 0
+  f6:	45 2b       	or	r20, r21
+  f8:	4c b9       	out	0x0c, r20	; 12
+	}
+	
+	/*imposta il bit di stop, specificato dalle macro passate per argomento*/
+	BIT_STOP_REG |= stop_bit;
+  fa:	5c b1       	in	r21, 0x0c	; 12
+  fc:	c6 5f       	subi	r28, 0xF6	; 246
+  fe:	df 4f       	sbci	r29, 0xFF	; 255
+ 100:	48 81       	ld	r20, Y
+ 102:	ca 50       	subi	r28, 0x0A	; 10
+ 104:	d0 40       	sbci	r29, 0x00	; 0
+ 106:	45 2b       	or	r20, r21
+ 108:	4c b9       	out	0x0c, r20	; 12
+	
+	/*imposta il controllo di parità del frame ricevuto*/
+	
+	BIT_CONTROL_REG |= partity_bit;
+ 10a:	5c b1       	in	r21, 0x0c	; 12
+ 10c:	c5 5f       	subi	r28, 0xF5	; 245
+ 10e:	df 4f       	sbci	r29, 0xFF	; 255
+ 110:	48 81       	ld	r20, Y
+ 112:	cb 50       	subi	r28, 0x0B	; 11
+ 114:	d0 40       	sbci	r29, 0x00	; 0
+ 116:	45 2b       	or	r20, r21
+ 118:	4c b9       	out	0x0c, r20	; 12
+	
+	/*inizializza le linee di comunicazione*/
+	
+	COMU_REG |= xline;
+ 11a:	5d b1       	in	r21, 0x0d	; 13
+ 11c:	c4 5f       	subi	r28, 0xF4	; 244
+ 11e:	df 4f       	sbci	r29, 0xFF	; 255
+ 120:	48 81       	ld	r20, Y
+ 122:	45 2b       	or	r20, r21
+ 124:	4d b9       	out	0x0d, r20	; 13
+		
+	return;
+}
+ 126:	df 91       	pop	r29
+ 128:	cf 91       	pop	r28
+ 12a:	3f 91       	pop	r19
+ 12c:	2f 91       	pop	r18
+ 12e:	08 95       	ret
+
+00000130 <transmitByte>:
+	return;
+}
+
+void transmitByte(uint8_t data) {
+	/* Wait for empty transmit buffer */
+	loop_until_bit_is_set(USART_DATA_REG, USART_DATA_REG_EMPTY_BIT);
+ 130:	4e b1       	in	r20, 0x0e	; 14
+ 132:	45 ff       	sbrs	r20, 5
+ 134:	fd cf       	rjmp	.-6      	; 0x130 <transmitByte>
+	
+	USART_DATA = data;                                            /* send data */
+ 136:	88 b9       	out	0x08, r24	; 8
+ 138:	08 95       	ret
+
+0000013a <printString>:
+#include "serialPrint.h"
+#include "..\..\bitmacro.h"
+#include <avr/io.h>
+#include <avr/pgmspace.h>
+
+void printString(const char * string){
+ 13a:	3f 93       	push	r19
+ 13c:	cf 93       	push	r28
+ 13e:	df 93       	push	r29
+ 140:	c8 2f       	mov	r28, r24
+ 142:	d9 2f       	mov	r29, r25
+
+  uint8_t i = 0;
+
+  while (string[i]) {
+ 144:	88 81       	ld	r24, Y
+ 146:	88 23       	and	r24, r24
+ 148:	51 f0       	breq	.+20     	; 0x15e <printString+0x24>
+ 14a:	30 e0       	ldi	r19, 0x00	; 0
+
+	transmitByte(string[i]);
+ 14c:	f1 df       	rcall	.-30     	; 0x130 <transmitByte>
+	i++;
+ 14e:	3f 5f       	subi	r19, 0xFF	; 255
+
+void printString(const char * string){
+
+  uint8_t i = 0;
+
+  while (string[i]) {
+ 150:	ec 2f       	mov	r30, r28
+ 152:	fd 2f       	mov	r31, r29
+ 154:	e3 0f       	add	r30, r19
+ 156:	f1 1f       	adc	r31, r17
+ 158:	80 81       	ld	r24, Z
+ 15a:	81 13       	cpse	r24, r17
+ 15c:	f7 cf       	rjmp	.-18     	; 0x14c <printString+0x12>
+	transmitByte(string[i]);
+	i++;
+  }
+
+	return;
+}
+ 15e:	df 91       	pop	r29
+ 160:	cf 91       	pop	r28
+ 162:	3f 91       	pop	r19
+ 164:	08 95       	ret
+
+00000166 <__divmodsi4>:
+ 166:	05 2f       	mov	r16, r21
+ 168:	97 fb       	bst	r25, 7
+ 16a:	16 f4       	brtc	.+4      	; 0x170 <__divmodsi4+0xa>
+ 16c:	00 95       	com	r16
+ 16e:	0f d0       	rcall	.+30     	; 0x18e <__negsi2>
+ 170:	57 fd       	sbrc	r21, 7
+ 172:	05 d0       	rcall	.+10     	; 0x17e <__divmodsi4_neg2>
+ 174:	14 d0       	rcall	.+40     	; 0x19e <__udivmodsi4>
+ 176:	07 fd       	sbrc	r16, 7
+ 178:	02 d0       	rcall	.+4      	; 0x17e <__divmodsi4_neg2>
+ 17a:	46 f4       	brtc	.+16     	; 0x18c <__divmodsi4_exit>
+ 17c:	08 c0       	rjmp	.+16     	; 0x18e <__negsi2>
+
+0000017e <__divmodsi4_neg2>:
+ 17e:	50 95       	com	r21
+ 180:	40 95       	com	r20
+ 182:	30 95       	com	r19
+ 184:	21 95       	neg	r18
+ 186:	3f 4f       	sbci	r19, 0xFF	; 255
+ 188:	4f 4f       	sbci	r20, 0xFF	; 255
+ 18a:	5f 4f       	sbci	r21, 0xFF	; 255
+
+0000018c <__divmodsi4_exit>:
+ 18c:	08 95       	ret
+
+0000018e <__negsi2>:
+ 18e:	90 95       	com	r25
+ 190:	80 95       	com	r24
+ 192:	70 95       	com	r23
+ 194:	61 95       	neg	r22
+ 196:	7f 4f       	sbci	r23, 0xFF	; 255
+ 198:	8f 4f       	sbci	r24, 0xFF	; 255
+ 19a:	9f 4f       	sbci	r25, 0xFF	; 255
+ 19c:	08 95       	ret
+
+0000019e <__udivmodsi4>:
+ 19e:	a1 e2       	ldi	r26, 0x21	; 33
+ 1a0:	1a 2f       	mov	r17, r26
+ 1a2:	aa 1b       	sub	r26, r26
+ 1a4:	bb 1b       	sub	r27, r27
+ 1a6:	ea 2f       	mov	r30, r26
+ 1a8:	fb 2f       	mov	r31, r27
+ 1aa:	0d c0       	rjmp	.+26     	; 0x1c6 <__udivmodsi4_ep>
+
+000001ac <__udivmodsi4_loop>:
+ 1ac:	aa 1f       	adc	r26, r26
+ 1ae:	bb 1f       	adc	r27, r27
+ 1b0:	ee 1f       	adc	r30, r30
+ 1b2:	ff 1f       	adc	r31, r31
+ 1b4:	a2 17       	cp	r26, r18
+ 1b6:	b3 07       	cpc	r27, r19
+ 1b8:	e4 07       	cpc	r30, r20
+ 1ba:	f5 07       	cpc	r31, r21
+ 1bc:	20 f0       	brcs	.+8      	; 0x1c6 <__udivmodsi4_ep>
+ 1be:	a2 1b       	sub	r26, r18
+ 1c0:	b3 0b       	sbc	r27, r19
+ 1c2:	e4 0b       	sbc	r30, r20
+ 1c4:	f5 0b       	sbc	r31, r21
+
+000001c6 <__udivmodsi4_ep>:
+ 1c6:	66 1f       	adc	r22, r22
+ 1c8:	77 1f       	adc	r23, r23
+ 1ca:	88 1f       	adc	r24, r24
+ 1cc:	99 1f       	adc	r25, r25
+ 1ce:	1a 95       	dec	r17
+ 1d0:	69 f7       	brne	.-38     	; 0x1ac <__udivmodsi4_loop>
+ 1d2:	60 95       	com	r22
+ 1d4:	70 95       	com	r23
+ 1d6:	80 95       	com	r24
+ 1d8:	90 95       	com	r25
+ 1da:	26 2f       	mov	r18, r22
+ 1dc:	37 2f       	mov	r19, r23
+ 1de:	48 2f       	mov	r20, r24
+ 1e0:	59 2f       	mov	r21, r25
+ 1e2:	6a 2f       	mov	r22, r26
+ 1e4:	7b 2f       	mov	r23, r27
+ 1e6:	8e 2f       	mov	r24, r30
+ 1e8:	9f 2f       	mov	r25, r31
+ 1ea:	08 95       	ret
+
+000001ec <abort>:
+ 1ec:	81 e0       	ldi	r24, 0x01	; 1
+ 1ee:	90 e0       	ldi	r25, 0x00	; 0
+ 1f0:	f8 94       	cli
+ 1f2:	00 c0       	rjmp	.+0      	; 0x1f4 <_exit>
+
+000001f4 <_exit>:
+ 1f4:	f8 94       	cli
+
+000001f6 <__stop_program>:
+ 1f6:	ff cf       	rjmp	.-2      	; 0x1f6 <__stop_program>
